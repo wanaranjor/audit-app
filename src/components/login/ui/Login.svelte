@@ -28,7 +28,7 @@
   <!-- h-full container flex flex-col items-center justify-center px-5 mx-auto text-gray-600 bg-auto bg-no-repeat bg-center
    hidden bg-auto bg-no-repeat  w-full h-screen md:items-center md:w-1/3 xl:w-2/3 md:flex -->
   <div
-    class="hidden sm:w-full h-screen bg-cover bg-center md:w-2/3 flex items-center"
+    class="hidden sm:flex h-screen bg-cover bg-center md:w-2/3 flex items-center"
     style="background-image: url(team.webp)"
   >
     <div
