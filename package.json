@@ -2,6 +2,10 @@
   "name": "audit-app",
   "description": "audit-app",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wanaranjor/audit-app.git"
+  },
   "author": {
     "name": "Wilson Andrés Naranjo Romero",
     "email": "wanaranjo@gmail.com",
