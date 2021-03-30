@@ -23,7 +23,7 @@ const expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour milisegundos
 //   expires: expiryDate
 // }
 
-const app = polka() // You can also use Express
+polka() // You can also use Express
 	.use(
 		json(),
 		session({
@@ -59,5 +59,3 @@ const app = polka() // You can also use Express
 	.listen(PORT, err => {
 		if (err) console.log('error', err);
 	});
-
-module.exports = app;
