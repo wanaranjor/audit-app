@@ -51,9 +51,9 @@
   >
     <div class="flex flex-col items-center w-full h-100">
       <div class="flex flex-col text-blue-700">
-        <p class="text-4xl font-bold">Auditoria Cloud</p>
+        <p class="text-4xl font-bold">Auditoría Cloud</p>
         <p class="text-sm text-center">
-          Firma Contable, Auditoria y Consultoria
+          Firma Contable, Auditoría y Consultoría
         </p>
       </div>
       <form class="w-full mt-6" on:submit|preventDefault={handleSubmit}>
