@@ -1,4 +1,5 @@
 <script>
+  import AddFilled24 from "carbon-icons-svelte/lib/AddFilled24";
   import {
     isEmpty,
     isEqualPassword,
@@ -9,6 +10,14 @@
   let razonSocial,
     tipoDoc,
     numeroDoc,
+    segmentoCliente,
+    direccion,
+    ciudad,
+    pais,
+    telefono,
+    correoEmpresarial,
+    nombreContacto,
+    correoContacto,
     email,
     password,
     conPassword = "";
@@ -17,6 +26,14 @@
     isEmpty(razonSocial) &&
     isEmpty(tipoDoc) &&
     isNumber(numeroDoc) &&
+    isEmpty(segmentoCliente) &&
+    isEmpty(direccion) &&
+    isEmpty(ciudad) &&
+    isEmpty(pais) &&
+    isEmpty(telefono) &&
+    isEmpty(correoEmpresarial) &&
+    isEmpty(nombreContacto) &&
+    isEmpty(correoContacto) &&
     isValidEmail(email) &&
     isEqualPassword(password, conPassword);
 
@@ -24,7 +41,7 @@
     // if (formIsValid) {
     //   let result = await addUser(
     //     razonSocial,
-    //     tipoDoc,
+    //     tipoDocumento,
     //     numeroDoc,
     //     email,
     //     password
@@ -36,7 +53,7 @@
     //       7000
     //     );
     //     razonSocial = "";
-    //     tipoDoc = "";
+    //     tipoDocumento = "";
     //     numeroDoc = "";
     //     email = "";
     //     password = "";
@@ -56,18 +73,21 @@
 
 <!-- <NotificationDisplay /> -->
 <section class="flex flex-col p-5 bg-white border rounded-md">
-  <p class="pb-3 text-lg font-semibold">Registro usuarios</p>
+  <div class="flex flex-row items-center pb-3 space-x-3">
+    <AddFilled24 class="text-blue-700" />
+    <p class="text-lg font-semibold text-gray-700">Registro usuarios</p>
+  </div>
   <form on:submit|preventDefault={handleSubmit}>
-    <div>
+    <div class="w-full pb-2">
       <label class="label-form" for="razonSocial"
-        >1. Nombre Razón Social
+        >Nombre Razón Social
         <input type="text" bind:value={razonSocial} class="input-form" />
       </label>
     </div>
-    <div class="flex flex-col w-full mt-4 space-x-0 md:space-x-3 md:flex-row">
-      <div class="w-full mb-4 md:w-1/2">
-        <label class="label-form" for="tipDocumento">
-          2. Tipo Documento
+    <div class="flex flex-col w-full space-x-0 md:space-x-3.5 md:flex-row pb-2">
+      <div class="w-full md:w-1/2">
+        <label class="label-form" for="tipoDoc">
+          Tipo documento
           <!-- TODO: cargar opciones del Select desde API -->
           <select bind:value={tipoDoc} class="text-xs input-form">
             <option value="" select>-------</option>
@@ -78,46 +98,113 @@
           </select>
         </label>
       </div>
-      <div class="w-full mb-4 md:w-1/2">
+      <div class="w-full md:w-1/2">
         <label class="label-form" for="numeroDoc">
-          3. Número Documento
+          Número documento
           <input class="input-form" type="text" bind:value={numeroDoc} />
         </label>
-        {#if !isNumber(numeroDoc)}
+        <!-- {#if !isNumber(numeroDoc)}
           <p class="text-xs italic text-gray-600">Solo números</p>
-        {/if}
+        {/if} -->
       </div>
     </div>
-    <div class="flex flex-col w-full space-x-0 md:space-x-3 md:flex-row">
+    <div class="flex flex-col w-full space-x-0 md:space-x-3.5 md:flex-row pb-2">
+      <div class="w-full md:w-1/2">
+        <label class="label-form" for="segmentoCliente">
+          Segmento cliente
+          <!-- TODO: cargar opciones del Select desde API -->
+          <select bind:value={segmentoCliente} class="text-xs input-form">
+            <option value="" select>-------</option>
+            <option value={"1"}>SERVICIOS</option>
+            <option value={"2"}>PETROLEO</option>
+            <option value={"3"}>BANCA</option>
+            <option value={"4"}>SEGUROS</option>
+          </select>
+        </label>
+      </div>
+      <div class="w-full md:w-1/2">
+        <label class="label-form" for="direccion">
+          Dirección
+          <input class="input-form" type="text" bind:value={direccion} />
+        </label>
+      </div>
+    </div>
+    <div class="flex flex-col w-full space-x-0 md:space-x-3.5 md:flex-row pb-2">
+      <div class="w-full md:w-1/2">
+        <label class="label-form" for="ciudad">
+          Ciudad
+          <input class="input-form" type="text" bind:value={ciudad} />
+        </label>
+      </div>
+      <div class="w-full md:w-1/2">
+        <label class="label-form" for="pais">
+          Pais
+          <input class="input-form" type="text" bind:value={pais} />
+        </label>
+      </div>
+    </div>
+    <div class="flex flex-col w-full space-x-0 md:space-x-3.5 md:flex-row pb-2">
+      <div class="w-full md:w-1/2">
+        <label class="label-form" for="telefono">
+          Teléfono
+          <input class="input-form" type="text" bind:value={telefono} />
+        </label>
+      </div>
+      <div class="w-full md:w-1/2">
+        <label class="label-form" for="correoEmpresarial">
+          Correo empresarial
+          <input
+            class="input-form"
+            type="text"
+            bind:value={correoEmpresarial}
+          />
+        </label>
+      </div>
+    </div>
+    <div class="flex flex-col w-full space-x-0 md:space-x-3.5 md:flex-row pb-2">
+      <div class="w-full md:w-1/2">
+        <label class="label-form" for="nombreContacto">
+          Nombre contacto
+          <input class="input-form" type="text" bind:value={nombreContacto} />
+        </label>
+      </div>
+      <div class="w-full md:w-1/2">
+        <label class="label-form" for="correoContacto">
+          Correo contacto
+          <input class="input-form" type="text" bind:value={correoContacto} />
+        </label>
+      </div>
+    </div>
+    <div class="flex flex-col w-full space-x-0 md:space-x-3.5 md:flex-row pb-2">
       <div class="w-full md:w-1/2">
         <div class="">
           <label class="label-form" for="password"
-            >6. Contraseña
+            >Contraseña
             <input type="password" bind:value={password} class="input-form" />
           </label>
         </div>
       </div>
-      <div class="w-full mb-4 md:w-1/2">
+      <div class="w-full md:w-1/2">
         <div class="mt-4 sm:mt-0">
           <label class="label-form" for="conPassword"
-            >7. Confirmar Contraseña
+            >Confirmar Contraseña
             <input
               type="password"
               bind:value={conPassword}
               class="input-form"
             />
           </label>
-          {#if !isEqualPassword(password, conPassword)}
+          <!-- {#if !isEqualPassword(password, conPassword)}
             <p class="text-xs italic text-gray-600">
               Las contraseñas no son iguales
             </p>
-          {/if}
+          {/if} -->
         </div>
       </div>
     </div>
     <div class="">
       <label class="label-form" for="email"
-        >6. Correo Eléctronico
+        >6. Correo eléctronico
         <input type="email" bind:value={email} class="lowercase input-form" />
       </label>
     </div>

@@ -1,5 +1,6 @@
 <script>
   import FormUser from "../../components/admin/ui/FormUser.svelte";
+  import ListUsers from "../../components/admin/ui/ListUsers.svelte";
   import NavBarLeft from "./../../components/shared/ui/NavBarLeft.svelte";
 </script>
 
@@ -7,13 +8,12 @@
   <div class="flex flex-col items-center justify-start my-3 w-14">
     <NavBarLeft />
   </div>
-  <div class="flex flex-col-reverse w-full sm:flex-row">
-    <div class="flex flex-row justify-start pr-5 my-3 sm:w-3/4">
-      <div class="w-1/2">
-        <FormUser />
-      </div>
-      <div />
+  <div class="flex flex-col w-full sm:flex-row">
+    <div class="flex flex-col my-3 sm:w-1/3 sm:pr-3">
+      <FormUser />
     </div>
-    <div class="flex flex-col my-3 sm:w-1/4 sm:pr-3">..</div>
+    <div class="flex flex-row justify-start pr-5 my-3 space-x-3 sm:w-2/3">
+      <ListUsers />
+    </div>
   </div>
 </section>
