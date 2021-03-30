@@ -62,28 +62,28 @@
             class="block font-medium leading-relaxed tracking-tighter text-gray-700 text-md"
             for="email"
             >Correo
+            <input
+              type="text"
+              name="email"
+              id="email"
+              bind:value={email}
+              class="w-full px-4 py-2 mt-2 text-base text-gray-700 bg-gray-100 border border-gray-300 focus:bg-white focus:ring-3 focus:outline-none focus:border-blue-700 focus:ring-blue-70"
+            />
           </label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            bind:value={email}
-            class="w-full px-4 py-2 mt-2 text-base text-gray-700 bg-gray-100 border border-gray-300 focus:bg-white focus:ring-3 focus:outline-none focus:border-blue-700 focus:ring-blue-70"
-          />
         </div>
         <div class="mt-4">
           <label
             class="block font-medium leading-relaxed tracking-tighter text-gray-700 text-md"
             for="password"
             >Contraseña
+            <input
+              type="password"
+              name="password"
+              bind:value={password}
+              minlength="6"
+              class="w-full px-4 py-2 mt-2 text-base text-gray-700 bg-gray-100 border border-gray-300 focus:bg-white focus:ring-3 focus:outline-none focus:border-blue-700 focus:ring-blue-700"
+            />
           </label>
-          <input
-            type="password"
-            name="password"
-            bind:value={password}
-            minlength="6"
-            class="w-full px-4 py-2 mt-2 text-base text-gray-700 bg-gray-100 border border-gray-300 focus:bg-white focus:ring-3 focus:outline-none focus:border-blue-700 focus:ring-blue-700"
-          />
         </div>
         <button
           class={formIsValid
