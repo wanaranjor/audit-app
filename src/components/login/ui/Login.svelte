@@ -1,12 +1,12 @@
 <script>
   import { NotificationDisplay, notifier } from "@beyonk/svelte-notifications";
   import { loginUser } from "../services/login.services";
-  import { isEmpty, isValidEmail } from "./../../../helpers/validators";
 
   let email,
     password = "";
 
-  $: formIsValid = isValidEmail(email) && isEmpty(password);
+  // $: formIsValid = isValidEmail(email) && isEmpty(password);
+  $: formIsValid = true;
 
   const handleSubmit = async () => {
     const response = await loginUser(email, password);
@@ -25,16 +25,14 @@
 
 <NotificationDisplay />
 <section class="flex flex-col items-center h-screen md:flex-row">
-  <!-- h-full container flex flex-col items-center justify-center px-5 mx-auto text-gray-600 bg-auto bg-no-repeat bg-center
-   hidden bg-auto bg-no-repeat  w-full h-screen md:items-center md:w-1/3 xl:w-2/3 md:flex -->
   <div
-    class="hidden sm:flex h-screen bg-cover bg-center md:w-2/3 flex items-center"
+    class="flex items-center h-screen bg-center bg-cover sm:flex md:w-2/3"
     style="background-image: url(team.webp)"
   >
     <div
-      class="text-white bg-black p-10 opacity-75 flex flex-col items-center justify-center mx-auto max-h-64 max-w-max "
+      class="flex flex-col items-center justify-center p-10 mx-auto text-white bg-black opacity-75 max-h-64 max-w-max "
     >
-      <p class="font-black text-4xl pb-5">Nuestra misión es clara</p>
+      <p class="pb-5 text-4xl font-black">Nuestra misión es clara</p>
 
       <p class="text-md">
         Profundizamos para mejorar la percepción y tenemos el coraje de actuar.
@@ -53,7 +51,7 @@
   >
     <div class="flex flex-col items-center w-full h-100">
       <div class="flex flex-col text-blue-700">
-        <p class="font-bold text-4xl">GMH Auditores</p>
+        <p class="text-4xl font-bold">Auditoria Cloud</p>
         <p class="text-sm text-center">
           Firma Contable, Auditoria y Consultoria
         </p>
