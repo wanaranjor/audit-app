@@ -1,11 +1,11 @@
 <script>
+  import { NotificationDisplay, notifier } from "@beyonk/svelte-notifications";
   import AddFilled24 from "carbon-icons-svelte/lib/AddFilled24";
-  import {
-    isEmpty,
-    isEqualPassword,
-    isNumber,
-    isValidEmail,
-  } from "../../../helpers/validators";
+  import { createEventDispatcher } from "svelte";
+  import { isEmpty, isNumber, isValidEmail } from "../../../helpers/validators";
+  import { addEmpresa } from "../services/admin.services";
+
+  const dispatch = createEventDispatcher();
 
   let razonSocial,
     tipoDoc,
@@ -17,10 +17,7 @@
     telefono,
     correoEmpresarial,
     nombreContacto,
-    correoContacto,
-    email,
-    password,
-    conPassword = "";
+    correoContacto = "";
 
   $: formIsValid =
     isEmpty(razonSocial) &&
@@ -31,47 +28,56 @@
     isEmpty(ciudad) &&
     isEmpty(pais) &&
     isEmpty(telefono) &&
-    isEmpty(correoEmpresarial) &&
+    isValidEmail(correoEmpresarial) &&
     isEmpty(nombreContacto) &&
-    isEmpty(correoContacto) &&
-    isValidEmail(email) &&
-    isEqualPassword(password, conPassword);
+    isValidEmail(correoContacto);
+
+  // isEqualPassword(password, conPassword);
 
   const handleSubmit = async () => {
-    // if (formIsValid) {
-    //   let result = await addUser(
-    //     razonSocial,
-    //     tipoDocumento,
-    //     numeroDoc,
-    //     email,
-    //     password
-    //   );
-    //   if (result === 200) {
-    //     formIsValid = false;
-    //     notifier.success(
-    //       `Registro creado correctamente. Pulse en Ingresar para terminar su proceso de registro.`,
-    //       7000
-    //     );
-    //     razonSocial = "";
-    //     tipoDocumento = "";
-    //     numeroDoc = "";
-    //     email = "";
-    //     password = "";
-    //     conPassword = "";
-    //   } else {
-    //     notifier.danger("Algo salio mal, verifique nuevamente.", 5000);
-    //   }
-    //   if (result === 403) {
-    //     notifier.danger(
-    //       "El número de documento ya se encuentra registrado.",
-    //       5000
-    //     );
-    //   }
-    // }
+    if (formIsValid) {
+      let result = await addEmpresa(
+        razonSocial,
+        tipoDoc,
+        numeroDoc,
+        segmentoCliente,
+        direccion,
+        ciudad,
+        pais,
+        telefono,
+        correoEmpresarial,
+        nombreContacto,
+        correoContacto
+      );
+      if (result === 200) {
+        formIsValid = false;
+        dispatch("updateListEmpresas");
+        notifier.success(`Cliente Empresarial creado correctamente.`, 7000);
+        razonSocial = "";
+        tipoDoc = "";
+        numeroDoc = "";
+        segmentoCliente = "";
+        direccion = "";
+        ciudad = "";
+        pais = "";
+        telefono = "";
+        correoEmpresarial = "";
+        nombreContacto = "";
+        correoContacto = "";
+      } else {
+        notifier.danger("Algo salio mal, verifique nuevamente.", 5000);
+      }
+      if (result === 403) {
+        notifier.danger(
+          "El número de documento ya se encuentra registrado.",
+          5000
+        );
+      }
+    }
   };
 </script>
 
-<!-- <NotificationDisplay /> -->
+<NotificationDisplay />
 <section class="flex flex-col p-5 bg-white border rounded-md">
   <div class="flex flex-row items-center pb-3 space-x-3">
     <AddFilled24 class="text-blue-700" />
@@ -175,7 +181,7 @@
         </label>
       </div>
     </div>
-    <div class="flex flex-col w-full space-x-0 md:space-x-3.5 md:flex-row pb-2">
+    <!-- <div class="flex flex-col w-full space-x-0 md:space-x-3.5 md:flex-row pb-2">
       <div class="w-full md:w-1/2">
         <div class="">
           <label class="label-form" for="password"
@@ -193,21 +199,21 @@
               bind:value={conPassword}
               class="input-form"
             />
-          </label>
-          <!-- {#if !isEqualPassword(password, conPassword)}
+          </label> -->
+    <!-- {#if !isEqualPassword(password, conPassword)}
             <p class="text-xs italic text-gray-600">
               Las contraseñas no son iguales
             </p>
           {/if} -->
-        </div>
+    <!-- </div>
       </div>
-    </div>
-    <div class="">
+    </div> -->
+    <!-- <div class="">
       <label class="label-form" for="email"
         >6. Correo eléctronico
         <input type="email" bind:value={email} class="lowercase input-form" />
       </label>
-    </div>
+    </div> -->
     <div class="flex flex-col">
       <button
         class={formIsValid

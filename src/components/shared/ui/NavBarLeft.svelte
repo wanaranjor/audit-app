@@ -28,7 +28,7 @@
   <ul class="space-y-2">
     <li>
       <a
-        href="/"
+        href="/dashboard"
         class="flex items-center p-2 space-x-3 font-light text-gray-500 rounded-md hover:bg-blue-700 hover:text-white"
       >
         <Building24 />

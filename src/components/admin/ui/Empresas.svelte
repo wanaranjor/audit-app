@@ -1,8 +1,9 @@
 <script>
-  import UserMultiple24 from "carbon-icons-svelte/lib/UserMultiple24";
-  import { dateTimeAmPm } from "../../../helpers/datetime.js";
+  import Enterprise24 from "carbon-icons-svelte/lib/Enterprise24";
+  import View24 from "carbon-icons-svelte/lib/View24";
+  import { dateTimeAmPm } from "../../../helpers/datetime";
 
-  export let listUsers = [];
+  export let listEmpresas = [];
 </script>
 
 <section
@@ -11,11 +12,11 @@
   <div
     class="flex flex-row items-center w-full px-5 mb-3 space-x-3 text-center"
   >
-    <UserMultiple24 />
-    <h1 class="text-lg font-semibold text-left text-gray-700">Usuarios</h1>
+    <Enterprise24 />
+    <h1 class="text-lg font-semibold text-left text-gray-700">Empresas</h1>
     <span
       class="px-2 text-sm font-semibold text-white bg-blue-700 rounded-full "
-      >{listUsers.length}</span
+      >{listEmpresas.length}</span
     >
   </div>
   <div
@@ -26,43 +27,56 @@
         <tr class="">
           <th
             class="px-2 py-3 text-sm font-semibold tracking-wider text-left text-gray-900 bg-gray-100 rounded-tl rounded-bl"
-            >Carpeta</th
+            >Razón Social</th
           >
           <th
             class="px-2 py-3 text-sm font-semibold tracking-wider text-gray-900 bg-gray-100"
-            >Responsable</th
+            >Documento</th
           >
           <th
             class="px-2 py-3 text-sm font-semibold tracking-wider text-gray-900 bg-gray-100"
-            >Correo</th
+            >Segmento</th
           >
           <th
             class="px-2 py-3 text-sm font-semibold tracking-wider text-gray-900 bg-gray-100"
-            >Usuario red</th
+            >Contacto</th
           >
           <th
             class="px-2 py-3 text-sm font-semibold tracking-wider text-gray-900 bg-gray-100"
             >Creación</th
           >
+          <th
+            class="px-2 py-3 text-sm font-semibold tracking-wider text-gray-900 bg-gray-100"
+            >Acción</th
+          >
         </tr>
       </thead>
       <tbody class="text-sm">
-        {#if listUsers}
-          {#each listUsers as user}
+        {#if listEmpresas}
+          {#each listEmpresas as empresa}
             <tr>
-              <td class="px-4 py-2"> {user.area.name} </td>
-
               <td class="px-4 py-2">
-                {user.responsable}
+                {empresa.razonSocial}
               </td>
               <td class="px-4 py-2">
-                {user.email}
+                {empresa.tipoDoc}
+                {empresa.numeroDoc}
               </td>
               <td class="px-4 py-2">
-                {user.username}
+                {empresa.segmentoCliente}
               </td>
               <td class="px-4 py-2">
-                {dateTimeAmPm(user.createdAt)}
+                {empresa.nombreContacto}
+              </td>
+              <td class="px-4 py-2">
+                {dateTimeAmPm(empresa.createdAt)}
+              </td>
+              <td class="px-4 py-2">
+                <div class="flex flex-row space-x-3">
+                  <a href="/dashboard/{empresa.id}">
+                    <View24 />
+                  </a>
+                </div>
               </td>
             </tr>
           {/each}
